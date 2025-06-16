@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artistas - NeoEvents</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="artists-page.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html" class="logo-text">Neo<span class="logo-accent">Events</span></a>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="index.html" class="nav-link">Início</a>
+                <a href="artists.html" class="nav-link active">Artistas</a>
+                <a href="events.html" class="nav-link">Eventos</a>
+                <a href="index.html#contact" class="nav-link">Contato</a>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Artists Hero Section -->
+    <section class="artists-hero">
+        <div class="hero-background">
+            <div class="floating-particles"></div>
+        </div>
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    <span class="title-line">Artistas</span>
+                    <span class="title-line accent-text">Excepcionais</span>
+                </h1>
+                <p class="hero-subtitle">Talentos de classe mundial para experiências inesquecíveis</p>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">500+</span>
+                        <span class="stat-label">Artistas</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">100+</span>
+                        <span class="stat-label">Gêneros</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">1000+</span>
+                        <span class="stat-label">Shows</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Artists Filter -->
+    <section class="artists-filter-section">
+        <div class="container">
+            <div class="filter-controls">
+                <div class="filter-categories">
+                    <button class="filter-btn active" data-filter="all">Todos</button>
+                    <button class="filter-btn" data-filter="electronic">Eletrônica</button>
+                    <button class="filter-btn" data-filter="rock">Rock</button>
+                    <button class="filter-btn" data-filter="pop">Pop</button>
+                    <button class="filter-btn" data-filter="jazz">Jazz</button>
+                    <button class="filter-btn" data-filter="classical">Clássica</button>
+                </div>
+                <div class="search-box">
+                    <input type="text" id="artist-search" placeholder="Buscar artistas...">
+                    <i class="fas fa-search"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Artists Grid -->
+    <section class="artists-grid-section">
+        <div class="container">
+            <div class="artists-grid">
+                <!-- Electronic Artists -->
+                <div class="artist-card detailed" data-category="electronic">
+                    <div class="artist-image">
+                        <div class="image-placeholder electronic-bg">
+                            <i class="fas fa-music"></i>
+                        </div>
+                        <div class="artist-badge featured">Destaque</div>
+                    </div>
+                    <div class="artist-content">
+                        <div class="artist-header">
+                            <h3 class="artist-name">Luna Synthwave</h3>
+                            <div class="artist-rating">
+                                <i class="fas fa-star"></i>
+                                <span>4.9</span>
+                            </div>
+                        </div>
+                        <p class="artist-genre">Eletrônica / Synthwave</p>
+                        <div class="artist-stats">
+                            <span><i class="fas fa-play-circle"></i> 2.5M reproduções</span>
+                            <span><i class="fas fa-users"></i> 850K fãs</span>
+                            <span><i class="fas fa-calendar"></i> 50+ shows</span>
+                        </div>
+                        <div class="artist-tags">
+                            <span class="tag">Futurista</span>
+                            <span class="tag">Dance</span>
+                            <span class="tag">Synthpop</span>
+                        </div>
+                        <div class="artist-price">
+                            <span class="price-label">A partir de</span>
+                            <span class="price-value">R$ 15.000</span>
+                        </div>
+                        <div class="artist-actions">
+                            <button class="btn btn-primary" onclick="openBookingModal('Luna Synthwave')">
+                                <i class="fas fa-calendar-plus"></i> Contratar
+                            </button>
+                            <button class="btn btn-secondary" onclick="viewArtistProfile('luna-synthwave')">
+                                <i class="fas fa-user"></i> Perfil
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Rock Artists -->
+                <div class="artist-card detailed" data-category="rock">
+                    <div class="artist-image">
+                        <div class="image-placeholder rock-bg">
+                            <i class="fas fa-guitar"></i>
+                        </div>
+                        <div class="artist-badge available">Disponível</div>
+                    </div>
+                    <div class="artist-content">
+                        <div class="artist-header">
+                            <h3 class="artist-name">Cyber Phoenix</h3>
+                            <div class="artist-rating">
+                                <i class="fas fa-star"></i>
+                                <span>4.8</span>
+                            </div>
+                        </div>
+                        <p class="artist-genre">Rock / Cyberpunk</p>
+                        <div class="artist-stats">
+                            <span><i class="fas fa-play-circle"></i> 1.8M reproduções</span>
+                            <span><i class="fas fa-users"></i> 650K fãs</span>
+                            <span><i class="fas fa-calendar"></i> 35+ shows</span>
+                        </div>
+                        <div class="artist-tags">
+                            <span class="tag">Energia</span>
+                            <span class="tag">Rock</span>
+                            <span class="tag">Industrial</span>
+                        </div>
+                        <div class="artist-price">
+                            <span class="price-label">A partir de</span>
+                            <span class="price-value">R$ 18.000</span>
+                        </div>
+                        <div class="artist-actions">
+                            <button class="btn btn-primary" onclick="openBookingModal('Cyber Phoenix')">
+                                <i class="fas fa-calendar-plus"></i> Contratar
+                            </button>
+                            <button class="btn btn-secondary" onclick="viewArtistProfile('cyber-phoenix')">
+                                <i class="fas fa-user"></i> Perfil
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pop Artists -->
+                <div class="artist-card detailed" data-category="pop">
+                    <div class="artist-image">
+                        <div class="image-placeholder pop-bg">
+                            <i class="fas fa-microphone"></i>
+                        </div>
+                        <div class="artist-badge busy">Ocupado</div>
+                    </div>
+                    <div class="artist-content">
+                        <div class="artist-header">
+                            <h3 class="artist-name">Neon Dreams</h3>
+                            <div class="artist-rating">
+                                <i class="fas fa-star"></i>
+                                <span>5.0</span>
+                            </div>
+                        </div>
+                        <p class="artist-genre">Pop / Experimental</p>
+                        <div class="artist-stats">
+                            <span><i class="fas fa-play-circle"></i> 3.2M reproduções</span>
+                            <span><i class="fas fa-users"></i> 1.1M fãs</span>
+                            <span><i class="fas fa-calendar"></i> 80+ shows</span>
+                        </div>
+                        <div class="artist-tags">
+                            <span class="tag">Vocal</span>
+                            <span class="tag">Pop</span>
+                            <span class="tag">Inovador</span>
+                        </div>
+                        <div class="artist-price">
+                            <span class="price-label">A partir de</span>
+                            <span class="price-value">R$ 25.000</span>
+                        </div>
+                        <div class="artist-actions">
+                            <button class="btn btn-primary disabled" disabled>
+                                <i class="fas fa-clock"></i> Indisponível
+                            </button>
+                            <button class="btn btn-secondary" onclick="viewArtistProfile('neon-dreams')">
+                                <i class="fas fa-user"></i> Perfil
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Jazz Artists -->
+                <div class="artist-card detailed" data-category="jazz">
+                    <div class="artist-image">
+                        <div class="image-placeholder jazz-bg">
+                            <i class="fas fa-saxophone"></i>
+                        </div>
+                        <div class="artist-badge available">Disponível</div>
+                    </div>
+                    <div class="artist-content">
+                        <div class="artist-header">
+                            <h3 class="artist-name">Digital Sax</h3>
+                            <div class="artist-rating">
+                                <i class="fas fa-star"></i>
+                                <span>4.7</span>
+                            </div>
+                        </div>
+                        <p class="artist-genre">Jazz / Fusion</p>
+                        <div class="artist-stats">
+                            <span><i class="fas fa-play-circle"></i> 980K reproduções</span>
+                            <span><i class="fas fa-users"></i> 450K fãs</span>
+                            <span><i class="fas fa-calendar"></i> 25+ shows</span>
+                        </div>
+                        <div class="artist-tags">
+                            <span class="tag">Smooth</span>
+                            <span class="tag">Jazz</span>
+                            <span class="tag">Fusion</span>
+                        </div>
+                        <div class="artist-price">
+                            <span class="price-label">A partir de</span>
+                            <span class="price-value">R$ 12.000</span>
+                        </div>
+                        <div class="artist-actions">
+                            <button class="btn btn-primary" onclick="openBookingModal('Digital Sax')">
+                                <i class="fas fa-calendar-plus"></i> Contratar
+                            </button>
+                            <button class="btn btn-secondary" onclick="viewArtistProfile('digital-sax')">
+                                <i class="fas fa-user"></i> Perfil
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Classical Artists -->
+                <div class="artist-card detailed" data-category="classical">
+                    <div class="artist-image">
+                        <div class="image-placeholder classical-bg">
+                            <i class="fas fa-piano"></i>
+                        </div>
+                        <div class="artist-badge featured">Destaque</div>
+                    </div>
+                    <div class="artist-content">
+                        <div class="artist-header">
+                            <h3 class="artist-name">Quantum Orchestra</h3>
+                            <div class="artist-rating">
+                                <i class="fas fa-star"></i>
+                                <span>4.9</span>
+                            </div>
+                        </div>
+                        <p class="artist-genre">Clássica / Moderna</p>
+                        <div class="artist-stats">
+                            <span><i class="fas fa-play-circle"></i> 1.5M reproduções</span>
+                            <span><i class="fas fa-users"></i> 720K fãs</span>
+                            <span><i class="fas fa-calendar"></i> 40+ shows</span>
+                        </div>
+                        <div class="artist-tags">
+                            <span class="tag">Orquestra</span>
+                            <span class="tag">Clássica</span>
+                            <span class="tag">Épica</span>
+                        </div>
+                        <div class="artist-price">
+                            <span class="price-label">A partir de</span>
+                            <span class="price-value">R$ 30.000</span>
+                        </div>
+                        <div class="artist-actions">
+                            <button class="btn btn-primary" onclick="openBookingModal('Quantum Orchestra')">
+                                <i class="fas fa-calendar-plus"></i> Contratar
+                            </button>
+                            <button class="btn btn-secondary" onclick="viewArtistProfile('quantum-orchestra')">
+                                <i class="fas fa-user"></i> Perfil
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Electronic Artists -->
+                <div class="artist-card detailed" data-category="electronic">
+                    <div class="artist-image">
+                        <div class="image-placeholder electronic-bg">
+                            <i class="fas fa-headphones"></i>
+                        </div>
+                        <div class="artist-badge available">Disponível</div>
+                    </div>
+                    <div class="artist-content">
+                        <div class="artist-header">
+                            <h3 class="artist-name">Pixel Beats</h3>
+                            <div class="artist-rating">
+                                <i class="fas fa-star"></i>
+                                <span>4.6</span>
+                            </div>
+                        </div>
+                        <p class="artist-genre">Eletrônica / House</p>
+                        <div class="artist-stats">
+                            <span><i class="fas fa-play-circle"></i> 2.1M reproduções</span>
+                            <span><i class="fas fa-users"></i> 680K fãs</span>
+                            <span><i class="fas fa-calendar"></i> 60+ shows</span>
+                        </div>
+                        <div class="artist-tags">
+                            <span class="tag">House</span>
+                            <span class="tag">Techno</span>
+                            <span class="tag">Progressive</span>
+                        </div>
+                        <div class="artist-price">
+                            <span class="price-label">A partir de</span>
+                            <span class="price-value">R$ 14.000</span>
+                        </div>
+                        <div class="artist-actions">
+                            <button class="btn btn-primary" onclick="openBookingModal('Pixel Beats')">
+                                <i class="fas fa-calendar-plus"></i> Contratar
+                            </button>
+                            <button class="btn btn-secondary" onclick="viewArtistProfile('pixel-beats')">
+                                <i class="fas fa-user"></i> Perfil
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Modal -->
+    <div id="booking-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Contratar Artista</h2>
+                <span class="modal-close" onclick="closeBookingModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="booking-form">
+                    <div class="artist-info">
+                        <h3 id="selected-artist-name">Nome do Artista</h3>
+                        <p id="selected-artist-genre">Gênero Musical</p>
+                    </div>
+                    <form id="booking-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="event-date">Data do Evento</label>
+                                <input type="date" id="event-date" name="event-date" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="event-time">Horário</label>
+                                <input type="time" id="event-time" name="event-time" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="event-location">Local do Evento</label>
+                            <input type="text" id="event-location" name="event-location" placeholder="Endereço completo" required>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="event-duration">Duração (horas)</label>
+                                <select id="event-duration" name="event-duration" required>
+                                    <option value="">Selecione</option>
+                                    <option value="1">1 hora</option>
+                                    <option value="2">2 horas</option>
+                                    <option value="3">3 horas</option>
+                                    <option value="4">4 horas</option>
+                                    <option value="custom">Personalizado</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="expected-audience">Público Esperado</label>
+                                <select id="expected-audience" name="expected-audience" required>
+                                    <option value="">Selecione</option>
+                                    <option value="50-100">50-100 pessoas</option>
+                                    <option value="100-500">100-500 pessoas</option>
+                                    <option value="500-1000">500-1000 pessoas</option>
+                                    <option value="1000+">1000+ pessoas</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="event-type">Tipo de Evento</label>
+                            <select id="event-type" name="event-type" required>
+                                <option value="">Selecione</option>
+                                <option value="corporate">Corporativo</option>
+                                <option value="wedding">Casamento</option>
+                                <option value="birthday">Aniversário</option>
+                                <option value="festival">Festival</option>
+                                <option value="concert">Concerto</option>
+                                <option value="other">Outro</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="special-requirements">Requisitos Especiais</label>
+                            <textarea id="special-requirements" name="special-requirements" rows="3" placeholder="Descreva qualquer requisito especial para o evento..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="contact-name">Seu Nome</label>
+                            <input type="text" id="contact-name" name="contact-name" required>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="contact-email">Email</label>
+                                <input type="email" id="contact-email" name="contact-email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="contact-phone">Telefone</label>
+                                <input type="tel" id="contact-phone" name="contact-phone" required>
+                            </div>
+                        </div>
+                        <div class="booking-summary">
+                            <h4>Resumo da Contratação</h4>
+                            <div class="summary-item">
+                                <span>Artista:</span>
+                                <span id="summary-artist">-</span>
+                            </div>
+                            <div class="summary-item">
+                                <span>Data:</span>
+                                <span id="summary-date">-</span>
+                            </div>
+                            <div class="summary-item">
+                                <span>Duração:</span>
+                                <span id="summary-duration">-</span>
+                            </div>
+                            <div class="summary-item total">
+                                <span>Valor Estimado:</span>
+                                <span id="summary-price">R$ 0</span>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-full">
+                            <i class="fas fa-paper-plane"></i> Enviar Solicitação
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="artists-page.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+    // Artists Page JavaScript
+
+// Global variables for artists page
+let selectedArtist = null;
+let artistsData = [
+    {
+        id: 'luna-synthwave',
+        name: 'Luna Synthwave',
+        genre: 'Eletrônica / Synthwave',
+        basePrice: 15000,
+        category: 'electronic'
+    },
+    {
+        id: 'cyber-phoenix',
+        name: 'Cyber Phoenix',
+        genre: 'Rock / Cyberpunk',
+        basePrice: 18000,
+        category: 'rock'
+    },
+    {
+        id: 'neon-dreams',
+        name: 'Neon Dreams',
+        genre: 'Pop / Experimental',
+        basePrice: 25000,
+        category: 'pop'
+    },
+    {
+        id: 'digital-sax',
+        name: 'Digital Sax',
+        genre: 'Jazz / Fusion',
+        basePrice: 12000,
+        category: 'jazz'
+    },
+    {
+        id: 'quantum-orchestra',
+        name: 'Quantum Orchestra',
+        genre: 'Clássica / Moderna',
+        basePrice: 30000,
+        category: 'classical'
+    },
+    {
+        id: 'pixel-beats',
+        name: 'Pixel Beats',
+        genre: 'Eletrônica / House',
+        basePrice: 14000,
+        category: 'electronic'
+    }
+];
+
+// Initialize artists page
+document.addEventListener('DOMContentLoaded', function() {
+    initializeArtistsPage();
+});
+
+function initializeArtistsPage() {
+    initializeNavigation();
+    initializeArtistFilters();
+    initializeSearch();
+    initializeScrollAnimations();
+    initializeBookingForm();
+    
+    // Update pricing in real-time
+    updateBookingSummary();
+}
+
+// Artist Filter Functions
+function initializeArtistFilters() {
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const artistCards = document.querySelectorAll('.artist-card');
+    
+    filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const filter = button.getAttribute('data-filter');
+            
+            // Update active button
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+            
+            // Filter artist cards
+            filterArtists(filter);
+        });
+    });
+}
+
+function filterArtists(filter) {
+    const artistCards = document.querySelectorAll('.artist-card');
+    
+    artistCards.forEach((card, index) => {
+        const category = card.getAttribute('data-category');
+        const shouldShow = filter === 'all' || category === filter;
+        
+        setTimeout(() => {
+            if (shouldShow) {
+                card.style.display = 'block';
+                card.classList.remove('hidden');
+                card.style.animationDelay = `${index * 100}ms`;
+                card.classList.add('fade-in', 'visible');
+            } else {
+                card.classList.add('hidden');
+                setTimeout(() => {
+                    if (card.classList.contains('hidden')) {
+                        card.style.display = 'none';
+                    }
+                }, 300);
+            }
+        }, index * 50);
+    });
+}
+
+// Search Function
+function initializeSearch() {
+    const searchInput = document.getElementById('artist-search');
+    
+    searchInput.addEventListener('input', debounce(function() {
+        const searchTerm = this.value.toLowerCase();
+        searchArtists(searchTerm);
+    }, 300));
+}
+
+function searchArtists(searchTerm) {
+    const artistCards = document.querySelectorAll('.artist-card');
+    
+    artistCards.forEach(card => {
+        const artistName = card.querySelector('.artist-name').textContent.toLowerCase();
+        const artistGenre = card.querySelector('.artist-genre').textContent.toLowerCase();
+        const artistTags = Array.from(card.querySelectorAll('.tag')).map(tag => tag.textContent.toLowerCase());
+        
+        const matches = artistName.includes(searchTerm) || 
+                       artistGenre.includes(searchTerm) || 
+                       artistTags.some(tag => tag.includes(searchTerm));
+        
+        if (matches || searchTerm === '') {
+            card.style.display = 'block';
+            card.classList.remove('hidden');
+        } else {
+            card.classList.add('hidden');
+            setTimeout(() => {
+                if (card.classList.contains('hidden')) {
+                    card.style.display = 'none';
+                }
+            }, 300);
+        }
+    });
+}
+
+// Booking Modal Functions
+function openBookingModal(artistName) {
+    const modal = document.getElementById('booking-modal');
+    const artistNameEl = document.getElementById('selected-artist-name');
+    const artistGenreEl = document.getElementById('selected-artist-genre');
+    
+    // Find artist data
+    selectedArtist = artistsData.find(artist => artist.name === artistName);
+    
+    if (selectedArtist) {
+        artistNameEl.textContent = selectedArtist.name;
+        artistGenreEl.textContent = selectedArtist.genre;
+        
+        // Update summary
+        document.getElementById('summary-artist').textContent = selectedArtist.name;
+        
+        modal.style.display = 'block';
+        document.body.style.overflow = 'hidden';
+        
+        // Animate modal in
+        setTimeout(() => {
+            modal.querySelector('.modal-content').style.transform = 'scale(1)';
+            modal.querySelector('.modal-content').style.opacity = '1';
+        }, 10);
+    }
+}
+
+function closeBookingModal() {
+    const modal = document.getElementById('booking-modal');
+    const modalContent = modal.querySelector('.modal-content');
+    
+    modalContent.style.transform = 'scale(0.9)';
+    modalContent.style.opacity = '0';
+    
+    setTimeout(() => {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+        resetBookingForm();
+    }, 300);
+}
+
+function resetBookingForm() {
+    const form = document.getElementById('booking-form');
+    form.reset();
+    updateBookingSummary();
+}
+
+// Booking Form Initialization
+function initializeBookingForm() {
+    const form = document.getElementById('booking-form');
+    const formInputs = form.querySelectorAll('input, select, textarea');
+    
+    // Add event listeners for real-time updates
+    formInputs.forEach(input => {
+        input.addEventListener('change', updateBookingSummary);
+        input.addEventListener('input', updateBookingSummary);
+    });
+    
+    // Form submission
+    form.addEventListener('submit', handleBookingSubmission);
+    
+    // Close modal when clicking outside
+    document.getElementById('booking-modal').addEventListener('click', function(e) {
+        if (e.target === this) {
+            closeBookingModal();
+        }
+    });
+}
+
+function updateBookingSummary() {
+    if (!selectedArtist) return;
+    
+    const eventDate = document.getElementById('event-date').value;
+    const eventDuration = document.getElementById('event-duration').value;
+    const expectedAudience = document.getElementById('expected-audience').value;
+    
+    // Update summary fields
+    document.getElementById('summary-date').textContent = eventDate || '-';
+    document.getElementById('summary-duration').textContent = eventDuration ? `${eventDuration} horas` : '-';
+    
+    // Calculate estimated price
+    let estimatedPrice = selectedArtist.basePrice;
+    
+    // Duration multiplier
+    if (eventDuration) {
+        const durationMultiplier = {
+            '1': 1,
+            '2': 1.5,
+            '3': 2,
+            '4': 2.5,
+            'custom': 2
+        };
+        estimatedPrice *= durationMultiplier[eventDuration] || 1;
+    }
+    
+    // Audience multiplier
+    if (expectedAudience) {
+        const audienceMultiplier = {
+            '50-100': 1,
+            '100-500': 1.2,
+            '500-1000': 1.5,
+            '1000+': 2
+        };
+        estimatedPrice *= audienceMultiplier[expectedAudience] || 1;
+    }
+    
+    // Format and display price
+    const formattedPrice = new Intl.NumberFormat('pt-BR', {
+        style: 'currency',
+        currency: 'BRL'
+    }).format(estimatedPrice);
+    
+    document.getElementById('summary-price').textContent = formattedPrice;
+}
+
+function handleBookingSubmission(e) {
+    e.preventDefault();
+    
+    const formData = new FormData(e.target);
+    const submitButton = e.target.querySelector('button[type="submit"]');
+    const originalText = submitButton.innerHTML;
+    
+    // Show loading state
+    submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+    submitButton.disabled = true;
+    
+    // Simulate API call
+    setTimeout(() => {
+        // Show success notification
+        showNotification('Solicitação de contratação enviada com sucesso! Entraremos em contato em breve.', 'success');
+        
+        // Reset form and close modal
+        closeBookingModal();
+        
+        // Reset button
+        submitButton.innerHTML = originalText;
+        submitButton.disabled = false;
+        
+        // Send confirmation email simulation
+        setTimeout(() => {
+            showNotification('Email de confirmação enviado para seu endereço.', 'info');
+        }, 2000);
+        
+    }, 2000);
+}
+
+// Artist Profile Function
+function viewArtistProfile(artistId) {
+    // Simulate opening artist profile
+    showNotification('Perfil do artista em desenvolvimento. Em breve você poderá ver mais detalhes!', 'info');
+    
+    // In a real application, this would navigate to a detailed artist page
+    // window.location.href = `artist-profile.html?id=${artistId}`;
+}
+
+// Scroll Animations
+function initializeScrollAnimations() {
+    const observeElements = document.querySelectorAll('.artist-card, .stat-item, .hero-content');
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('fade-in', 'visible');
+                
+                // Stagger animation for grid items
+                if (entry.target.classList.contains('artist-card')) {
+                    const cards = Array.from(document.querySelectorAll('.artist-card'));
+                    const delay = cards.indexOf(entry.target) * 100;
+                    entry.target.style.animationDelay = `${delay}ms`;
+                }
+            }
+        });
+    }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    });
+    
+    observeElements.forEach(el => {
+        el.classList.add('fade-in');
+        observer.observe(el);
+    });
+}
+
+// Utility Functions
+function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+}
+
+function showNotification(message, type = 'info') {
+    const notification = document.createElement('div');
+    notification.className = `notification notification-${type}`;
+    notification.innerHTML = `
+        <span>${message}</span>
+        <button class="notification-close">&times;</button>
+    `;
+    
+    // Add styles
+    Object.assign(notification.style, {
+        position: 'fixed',
+        top: '100px',
+        right: '20px',
+        padding: '1rem 1.5rem',
+        borderRadius: '8px',
+        color: '#fff',
+        fontSize: '0.9rem',
+        zIndex: '10001',
+        transform: 'translateX(400px)',
+        transition: 'transform 0.3s ease',
+        maxWidth: '400px',
+        wordWrap: 'break-word'
+    });
+    
+    // Set background color based on type
+    switch (type) {
+        case 'success':
+            notification.style.background = 'linear-gradient(135deg, #00ff88, #00cc6a)';
+            break;
+        case 'error':
+            notification.style.background = 'linear-gradient(135deg, #ff4757, #ff3838)';
+            break;
+        default:
+            notification.style.background = 'linear-gradient(135deg, #00f5ff, #0099cc)';
+    }
+    
+    document.body.appendChild(notification);
+    
+    // Animate in
+    setTimeout(() => {
+        notification.style.transform = 'translateX(0)';
+    }, 100);
+    
+    // Close button functionality
+    const closeButton = notification.querySelector('.notification-close');
+    closeButton.style.background = 'none';
+    closeButton.style.border = 'none';
+    closeButton.style.color = 'inherit';
+    closeButton.style.marginLeft = '1rem';
+    closeButton.style.cursor = 'pointer';
+    closeButton.style.fontSize = '1.2rem';
+    
+    closeButton.addEventListener('click', () => {
+        removeNotification(notification);
+    });
+    
+    // Auto remove after 5 seconds
+    setTimeout(() => {
+        removeNotification(notification);
+    }, 5000);
+}
+
+function removeNotification(notification) {
+    notification.style.transform = 'translateX(400px)';
+    setTimeout(() => {
+        if (notification.parentElement) {
+            notification.parentElement.removeChild(notification);
+        }
+    }, 300);
+}
+
+// Add smooth modal animation styles
+if (!document.querySelector('#modal-styles')) {
+    const style = document.createElement('style');
+    style.id = 'modal-styles';
+    style.textContent = `
+        .modal-content {
+            transform: scale(0.9);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+        
+        .artist-card.hidden {
+            opacity: 0;
+            transform: scale(0.95);
+            transition: all 0.3s ease;
+        }
+    `;
+    document.head.appendChild(style);
+}
+</script>
