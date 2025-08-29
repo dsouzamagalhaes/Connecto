@@ -14,13 +14,13 @@
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <div class="nav-logo">
-                <a href="index.html" class="logo-text">Neo<span class="logo-accent">Events</span></a>
+                <a href="index.html" class="logo-text">Con<span class="logo-accent">necto</span></a>
             </div>
             <div class="nav-menu" id="nav-menu">
                 <a href="index.html" class="nav-link">Início</a>
                 <a href="artists.html" class="nav-link active">Artistas</a>
                 <a href="events.html" class="nav-link">Eventos</a>
-                <a href="index.html#contact" class="nav-link">Contato</a>
+                <a href="#contact" class="nav-link">Contato</a>
             </div>
             <div class="hamburger" id="hamburger">
                 <span class="bar"></span>
@@ -355,23 +355,24 @@
                     <form id="booking-form">
                         <div class="form-row">
                             <div class="form-group">
-                                <label for="event-date">Data do Evento</label>
+                                <label for="event-date"></label>
+                                
                                 <input type="date" id="event-date" name="event-date" required>
                             </div>
                             <div class="form-group">
-                                <label for="event-time">Horário</label>
+                                <label for="event-time"></label>
                                 <input type="time" id="event-time" name="event-time" required>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="event-location">Local do Evento</label>
+                            <label for="event-location"></label>
                             <input type="text" id="event-location" name="event-location" placeholder="Endereço completo" required>
                         </div>
                         <div class="form-row">
                             <div class="form-group">
-                                <label for="event-duration">Duração (horas)</label>
+                                <label for="event-duration"> </label>
                                 <select id="event-duration" name="event-duration" required>
-                                    <option value="">Selecione</option>
+                                    <option value="">Tempo de duração do evento</option>
                                     <option value="1">1 hora</option>
                                     <option value="2">2 horas</option>
                                     <option value="3">3 horas</option>
@@ -380,9 +381,9 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="expected-audience">Público Esperado</label>
+                                <label for="expected-audience"></label>
                                 <select id="expected-audience" name="expected-audience" required>
-                                    <option value="">Selecione</option>
+                                    <option value="">Qauntidade de pessoas presentes</option>
                                     <option value="50-100">50-100 pessoas</option>
                                     <option value="100-500">100-500 pessoas</option>
                                     <option value="500-1000">500-1000 pessoas</option>
@@ -391,9 +392,9 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="event-type">Tipo de Evento</label>
+                            <label for="event-type"></label>
                             <select id="event-type" name="event-type" required>
-                                <option value="">Selecione</option>
+                                <option value="">Tipo de evento</option>
                                 <option value="corporate">Corporativo</option>
                                 <option value="wedding">Casamento</option>
                                 <option value="birthday">Aniversário</option>
@@ -403,8 +404,8 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="special-requirements">Requisitos Especiais</label>
-                            <textarea id="special-requirements" name="special-requirements" rows="3" placeholder="Descreva qualquer requisito especial para o evento..."></textarea>
+                            <label for="special-requirements"></label>
+                            <textarea id="special-requirements" name="special-requirements" rows="3" placeholder="Descreva sobre o evento..."></textarea>
                         </div>
                         <div class="form-group">
                             <label for="contact-name">Seu Nome</label>
@@ -930,5 +931,4 @@ if (!document.querySelector('#modal-styles')) {
     `;
     document.head.appendChild(style);
 }
-
 </script>
