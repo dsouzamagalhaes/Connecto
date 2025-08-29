@@ -1,701 +1,1127 @@
-/* Events Page Styles */
-
-/* Events Hero Section */   
-.events-hero {
-    height: 70vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    overflow: hidden;
-    background: #191f28;
-}
-
-.events-hero .hero-background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-   background: radial-gradient(ellipse at center, rgba(12, 80, 76, 0.15) 0%, transparent 70%),
-                radial-gradient(ellipse at 80% 20%, rgba(7, 121, 115, 0.15) 0%, transparent 70%);
-    animation: backgroundShift 20s ease-in-out infinite;
-}
-
-.hero-cta {
-    display: flex;
-    gap: 1.5rem;
-    justify-content: center;
-    margin-top: 2rem;
-    flex-wrap: wrap;
-}
-
-/* Event Categories Section */
-.event-categories {
-    padding: 6rem 0;
-    background: var(--surface-color);
-}
-
-.categories-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
-    margin-top: 3rem;
-}
-
-.category-card {
-    background: var(--surface-light);
-    border: 1px solid var(--border-color);
-    border-radius: var(--border-radius-large);
-    padding: 2rem;
-    text-align: center;
-    transition: all var(--transition-medium);
-    position: relative;
-    overflow: hidden;
-}
-
-.category-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: var(--gradient-primary);
-    opacity: 0;
-    transition: opacity var(--transition-medium);
-    z-index: 0;
-}
-
-.category-card:hover::before {
-    opacity: 0.05;
-}
-
-.category-card:hover {
-    transform: translateY(-10px);
-    border-color: var(--primary-color);
-    box-shadow: 0 20px 50px rgba(0, 245, 255, 0.2);
-}
-
-.category-card > * {
-    position: relative;
-    z-index: 1;
-}
-
-.category-icon {
-    width: 80px;
-    height: 80px;
-    margin: 0 auto 1.5rem;
-    background: var(--gradient-primary);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 2rem;
-    color: var(--background-dark);
-}
-
-.category-title {
-    font-family: var(--font-primary);
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-    color: var(--text-primary);
-}
-
-.category-description {
-    color: var(--text-secondary);
-    margin-bottom: 1.5rem;
-    line-height: 1.6;
-}
-
-.category-features {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    justify-content: center;
-    margin-bottom: 2rem;
-}
-
-.feature {
-    padding: 0.3rem 0.8rem;
-    background: rgba(0, 245, 255, 0.1);
-    border: 1px solid var(--primary-color);
-    border-radius: 20px;
-    font-size: 0.8rem;
-    color: var(--primary-color);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.btn-outline {
-    background: transparent;
-    border: 2px solid var(--primary-color);
-    color: var(--primary-color);
-    padding: 0.8rem 1.5rem;
-}
-
-.btn-outline:hover {
-    background: var(--primary-color);
-    color: var(--background-dark);
-}
-
-/* Upcoming Events Section */
-.upcoming-events {
-    padding: 6rem 0;
-    background: var(--background-dark);
-}
-
-.events-filter {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-    margin-top: 2rem;
-    flex-wrap: wrap;
-}
-
-.events-timeline {
-    display: grid;
-    gap: 3rem;
-    margin-top: 4rem;
-}
-
-/* Event Cards */
-.event-card {
-    display: grid;
-    grid-template-columns: auto 300px 1fr;
-    gap: 2rem;
-    background: var(--surface-light);
-    border: 1px solid var(--border-color);
-    border-radius: var(--border-radius-large);
-    overflow: hidden;
-    transition: all var(--transition-medium);
-    position: relative;
-}
-
-.event-card:hover {
-    transform: translateY(-5px);
-    border-color: var(--secondary-color);
-    box-shadow: 0 20px 50px rgba(255, 0, 128, 0.2);
-}
-
-.event-card.featured {
-    border-color: var(--accent-color);
-    box-shadow: 0 0 30px rgba(255, 255, 0, 0.3);
-}
-
-.event-card.featured::before {
-    content: 'DESTAQUE';
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    background: var(--gradient-accent);
-    color: var(--background-dark);
-    padding: 0.3rem 0.8rem;
-    border-radius: 15px;
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 1px;
-    z-index: 2;
-}
-
-/* Event Date */
-.event-date {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 2rem 1.5rem;
-    background: var(--background-darker);
-    border-right: 1px solid var(--border-color);
-}
-
-.date-box {
-    text-align: center;
-    margin-bottom: 1rem;
-}
-
-.day {
-    display: block;
-    font-family: var(--font-primary);
-    font-size: 2.5rem;
-    font-weight: 900;
-    color: var(--primary-color);
-    line-height: 1;
-}
-
-.month {
-    display: block;
-    font-size: 0.9rem;
-    color: var(--text-secondary);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-top: 0.3rem;
-}
-
-.event-status {
-    padding: 0.3rem 0.8rem;
-    border-radius: 15px;
-    font-size: 0.7rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    text-align: center;
-}
-
-.event-status.live {
-    background: linear-gradient(135deg, #ff4757, #ff3838);
-    color: white;
-    animation: pulse 2s infinite;
-}
-
-.event-status.upcoming {
-    background: linear-gradient(135deg, #00ff88, #00cc6a);
-    color: var(--background-dark);
-}
-
-.event-status.booking {
-    background: var(--gradient-primary);
-    color: var(--background-dark);
-}
-
-.event-status.virtual {
-    background: linear-gradient(135deg, #8e44ad, #9b59b6);
-    color: white;
-}
-
-@keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.7; }
-}
-
-/* Event Image */
-.event-image {
-    position: relative;
-    height: 250px;
-    overflow: hidden;
-}
-
-.event-image .image-placeholder {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 3rem;
-    color: rgba(255, 255, 255, 0.4);
-    transition: all var(--transition-medium);
-}
-
-.entertainment-bg {
-    background: linear-gradient(135deg, rgba(255, 0, 128, 0.3), rgba(26, 26, 46, 0.8));
-}
-
-.corporate-bg {
-    background: linear-gradient(135deg, rgba(0, 245, 255, 0.3), rgba(26, 26, 46, 0.8));
-}
-
-.private-bg {
-    background: linear-gradient(135deg, rgba(255, 192, 203, 0.3), rgba(26, 26, 46, 0.8));
-}
-
-.virtual-bg {
-    background: linear-gradient(135deg, rgba(138, 43, 226, 0.3), rgba(26, 26, 46, 0.8));
-}
-
-.event-overlay {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
-    padding: 1rem;
-    transform: translateY(100%);
-    transition: transform var(--transition-medium);
-}
-
-.event-card:hover .event-overlay {
-    transform: translateY(0);
-}
-
-.event-price {
-    color: var(--accent-color);
-    font-weight: 700;
-    font-family: var(--font-primary);
-    text-align: center;
-}
-
-/* Event Content */
-.event-content {
-    padding: 2rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.event-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 1rem;
-}
-
-.event-title {
-    font-family: var(--font-primary);
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--text-primary);
-    margin: 0;
-    flex: 1;
-}
-
-.event-rating {
-    display: flex;
-    align-items: center;
-    gap: 0.3rem;
-    color: var(--accent-color);
-    font-weight: 600;
-    margin-left: 1rem;
-}
-
-.event-description {
-    color: var(--text-secondary);
-    margin-bottom: 1.5rem;
-    line-height: 1.6;
-}
-
-.event-details {
-    margin-bottom: 1.5rem;
-}
-
-.detail-item {
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
-    margin-bottom: 0.8rem;
-    color: var(--text-muted);
-    font-size: 0.9rem;
-}
-
-.detail-item i {
-    color: var(--primary-color);
-    width: 16px;
-}
-
-.event-artists h4,
-.event-tech h4,
-.event-features h4,
-.event-platforms h4 {
-    font-size: 0.9rem;
-    color: var(--text-secondary);
-    margin-bottom: 0.8rem;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.artist-list,
-.tech-list,
-.feature-list,
-.platform-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-bottom: 1.5rem;
-}
-
-.artist-tag,
-.tech-tag,
-.feature-tag,
-.platform-tag {
-    padding: 0.2rem 0.6rem;
-    background: rgba(255, 0, 128, 0.1);
-    border: 1px solid var(--secondary-color);
-    border-radius: 15px;
-    font-size: 0.7rem;
-    color: var(--secondary-color);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.event-actions {
-    display: flex;
-    gap: 1rem;
-    margin-top: auto;
-}
-
-.event-actions .btn {
-    flex: 1;
-    justify-content: center;
-    padding: 0.8rem 1rem;
-    font-size: 0.9rem;
-}
-
-/* Event Planning Section */
-.event-planning {
-    padding: 6rem 0;
-    background: var(--surface-color);
-}
-
-.planning-steps {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    margin: 4rem 0;
-}
-
-.step-card {
-    background: var(--surface-light);
-    border: 1px solid var(--border-color);
-    border-radius: var(--border-radius-large);
-    padding: 2rem;
-    position: relative;
-    transition: all var(--transition-medium);
-}
-
-.step-card:hover {
-    transform: translateY(-5px);
-    border-color: var(--accent-color);
-    box-shadow: 0 15px 40px rgba(255, 255, 0, 0.2);
-}
-
-.step-number {
-    position: absolute;
-    top: -15px;
-    left: 2rem;
-    background: var(--gradient-accent);
-    color: var(--background-dark);
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: var(--font-primary);
-    font-weight: 900;
-    font-size: 1.1rem;
-}
-
-.step-content h3 {
-    font-family: var(--font-primary);
-    color: var(--text-primary);
-    margin-bottom: 1rem;
-    margin-top: 1rem;
-}
-
-.step-content p {
-    color: var(--text-secondary);
-    margin-bottom: 1.5rem;
-    line-height: 1.6;
-}
-
-.step-content ul {
-    list-style: none;
-    padding: 0;
-}
-
-.step-content li {
-    color: var(--text-muted);
-    margin-bottom: 0.5rem;
-    padding-left: 1.5rem;
-    position: relative;
-}
-
-.step-content li::before {
-    content: '✓';
-    position: absolute;
-    left: 0;
-    color: var(--accent-color);
-    font-weight: bold;
-}
-
-.planning-cta {
-    display: flex;
-    gap: 2rem;
-    justify-content: center;
-    margin-top: 3rem;
-    flex-wrap: wrap;
-}
-
-.btn-large {
-    padding: 1.2rem 2.5rem;
-    font-size: 1.1rem;
-}
-
-/* Planning Modal */
-.modal.large .modal-content {
-    max-width: 1000px;
-    width: 95%;
-}
-
-.planning-form {
-    max-height: 70vh;
-    overflow-y: auto;
-    padding-right: 1rem;
-}
-
-.form-section {
-    margin-bottom: 3rem;
-    padding-bottom: 2rem;
-    border-bottom: 1px solid var(--border-color);
-}
-
-.form-section:last-child {
-    border-bottom: none;
-    margin-bottom: 0;
-}
-
-.form-section h3 {
-    font-family: var(--font-primary);
-    color: var(--text-primary);
-    margin-bottom: 1.5rem;
-    font-size: 1.3rem;
-}
-
-.tech-options {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1rem;
-}
-
-.tech-checkbox {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    padding: 1rem;
-    background: var(--surface-color);
-    border: 1px solid var(--border-color);
-    border-radius: var(--border-radius);
-    cursor: pointer;
-    transition: all var(--transition-fast);
-}
-
-.tech-checkbox:hover {
-    border-color: var(--primary-color);
-    background: rgba(0, 245, 255, 0.05);
-}
-
-.tech-checkbox input[type="checkbox"] {
-    display: none;
-}
-
-.checkmark {
-    width: 20px;
-    height: 20px;
-    border: 2px solid var(--border-color);
-    border-radius: 4px;
-    position: relative;
-    transition: all var(--transition-fast);
-}
-
-.tech-checkbox input[type="checkbox"]:checked + .checkmark {
-    background: var(--primary-color);
-    border-color: var(--primary-color);
-}
-
-.tech-checkbox input[type="checkbox"]:checked + .checkmark::after {
-    content: '✓';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: var(--background-dark);
-    font-weight: bold;
-    font-size: 0.8rem;
-}
-
-.tech-info strong {
-    color: var(--text-primary);
-    display: block;
-    margin-bottom: 0.3rem;
-}
-
-.tech-info p {
-    color: var(--text-muted);
-    font-size: 0.8rem;
-    margin: 0;
-}
-
-.form-actions {
-    margin-top: 2rem;
-    padding-top: 2rem;
-    border-top: 1px solid var(--border-color);
-}
-
-/* Responsive Design */
-@media (max-width: 1024px) {
-    .event-card {
-        grid-template-columns: 1fr;
-        grid-template-rows: auto auto 1fr;
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eventos - Connecto</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="events-page.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html" class="logo-text">Con<span class="logo-accent">necto</span></a>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="index.html" class="nav-link">Início</a>
+                <a href="artists.html" class="nav-link">Artistas</a>
+                <a href="events.html" class="nav-link active">Eventos</a>
+                <a href="#contact" class="nav-link">Contato</a>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Events Hero Section -->
+    <section class="events-hero">
+        <div class="hero-background">
+            <div class="floating-particles"></div>
+        </div>
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    <span class="title-line">Eventos</span>
+                    <span class="title-line accent-text">Extraordinários</span>
+                </h1>
+                <p class="hero-subtitle">Criamos experiências inesquecíveis que transcendem o comum</p>
+                <div class="hero-cta">
+                    <button class="btn btn-primary" onclick="scrollToSection('upcoming-events')">
+                        <i class="fas fa-calendar"></i> Ver Próximos Eventos
+                    </button>
+                    <button class="btn btn-secondary" onclick="scrollToSection('event-planning')">
+                        <i class="fas fa-plus"></i> Criar Evento
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Event Categories -->
+    <section class="event-categories">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Tipos de <span class="accent-text">Eventos</span></h2>
+                <p class="section-subtitle">Especializados em criar experiências únicas para cada ocasião</p>
+            </div>
+            <div class="categories-grid">
+                <div class="category-card" data-category="corporate">
+                    <div class="category-icon">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h3 class="category-title">Corporativo</h3>
+                    <p class="category-description">Conferências, lançamentos de produtos e eventos empresariais com tecnologia de ponta</p>
+                    <div class="category-features">
+                        <span class="feature">Hologramas</span>
+                        <span class="feature">Realidade Aumentada</span>
+                        <span class="feature">Transmissão 4K</span>
+                    </div>
+                    <button class="btn btn-outline" onclick="filterEvents('corporate')">Ver Eventos</button>
+                </div>
+
+                <div class="category-card" data-category="entertainment">
+                    <div class="category-icon">
+                        <i class="fas fa-music"></i>
+                    </div>
+                    <h3 class="category-title">Entretenimento</h3>
+                    <p class="category-description">Concertos, festivais e shows com efeitos visuais espetaculares</p>
+                    <div class="category-features">
+                        <span class="feature">Drones Sincronizados</span>
+                        <span class="feature">Lasers 3D</span>
+                        <span class="feature">Som Surround</span>
+                    </div>
+                    <button class="btn btn-outline" onclick="filterEvents('entertainment')">Ver Eventos</button>
+                </div>
+
+                <div class="category-card" data-category="private">
+                    <div class="category-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3 class="category-title">Privado</h3>
+                    <p class="category-description">Casamentos, aniversários e celebrações pessoais memoráveis</p>
+                    <div class="category-features">
+                        <span class="feature">Decoração LED</span>
+                        <span class="feature">Fotografia 360°</span>
+                        <span class="feature">Experiências VR</span>
+                    </div>
+                    <button class="btn btn-outline" onclick="filterEvents('private')">Ver Eventos</button>
+                </div>
+
+                <div class="category-card" data-category="virtual">
+                    <div class="category-icon">
+                        <i class="fas fa-vr-cardboard"></i>
+                    </div>
+                    <h3 class="category-title">Virtual</h3>
+                    <p class="category-description">Eventos digitais imersivos e híbridos para audiência global</p>
+                    <div class="category-features">
+                        <span class="feature">Metaverso</span>
+                        <span class="feature">Realidade Virtual</span>
+                        <span class="feature">Interação Global</span>
+                    </div>
+                    <button class="btn btn-outline" onclick="filterEvents('virtual')">Ver Eventos</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Upcoming Events -->
+    <section id="upcoming-events" class="upcoming-events">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Próximos <span class="accent-text">Eventos</span></h2>
+                <div class="events-filter">
+                    <button class="filter-btn active" data-filter="all">Todos</button>
+                    <button class="filter-btn" data-filter="corporate">Corporativo</button>
+                    <button class="filter-btn" data-filter="entertainment">Entretenimento</button>
+                    <button class="filter-btn" data-filter="private">Privado</button>
+                    <button class="filter-btn" data-filter="virtual">Virtual</button>
+                </div>
+            </div>
+            
+            <div class="events-timeline">
+                <div class="event-card featured" data-category="entertainment">
+                    <div class="event-date">
+                        <div class="date-box">
+                            <span class="day">15</span>
+                            <span class="month">JUL</span>
+                        </div>
+                        <div class="event-status live">AO VIVO</div>
+                    </div>
+                    <div class="event-image">
+                        <div class="image-placeholder entertainment-bg">
+                            <i class="fas fa-music"></i>
+                        </div>
+                        <div class="event-overlay">
+                            <div class="event-price">R$ 150 - R$ 500</div>
+                        </div>
+                    </div>
+                    <div class="event-content">
+                        <div class="event-header">
+                            <h3 class="event-title">Festival Digital Paradise 2025</h3>
+                            <div class="event-rating">
+                                <i class="fas fa-star"></i>
+                                <span>4.9</span>
+                            </div>
+                        </div>
+                        <p class="event-description">Festival de música eletrônica com 3 dias de apresentações e experiências imersivas em realidade aumentada</p>
+                        <div class="event-details">
+                            <div class="detail-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Parque Tecnológico Neo</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-clock"></i>
+                                <span>15-17 Jul • 18:00 - 06:00</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-users"></i>
+                                <span>50.000 participantes</span>
+                            </div>
+                        </div>
+                        <div class="event-artists">
+                            <h4>Artistas Principais:</h4>
+                            <div class="artist-list">
+                                <span class="artist-tag">Luna Synthwave</span>
+                                <span class="artist-tag">Pixel Beats</span>
+                                <span class="artist-tag">Neon Dreams</span>
+                            </div>
+                        </div>
+                        <div class="event-actions">
+                            <button class="btn btn-primary" onclick="buyTickets('festival-digital-paradise')">
+                                <i class="fas fa-ticket-alt"></i> Comprar Ingressos
+                            </button>
+                            <button class="btn btn-secondary" onclick="viewEventDetails('festival-digital-paradise')">
+                                <i class="fas fa-info"></i> Detalhes
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="event-card" data-category="corporate">
+                    <div class="event-date">
+                        <div class="date-box">
+                            <span class="day">22</span>
+                            <span class="month">JUL</span>
+                        </div>
+                        <div class="event-status upcoming">EM BREVE</div>
+                    </div>
+                    <div class="event-image">
+                        <div class="image-placeholder corporate-bg">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <div class="event-overlay">
+                            <div class="event-price">Apenas Convidados</div>
+                        </div>
+                    </div>
+                    <div class="event-content">
+                        <div class="event-header">
+                            <h3 class="event-title">Lançamento TechCorp 2025</h3>
+                            <div class="event-rating">
+                                <i class="fas fa-star"></i>
+                                <span>4.8</span>
+                            </div>
+                        </div>
+                        <p class="event-description">Evento corporativo exclusivo para lançamento de produtos com apresentações holográficas</p>
+                        <div class="event-details">
+                            <div class="detail-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Centro de Convenções Neo</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-clock"></i>
+                                <span>22 Jul • 19:00 - 23:00</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-users"></i>
+                                <span>500 convidados</span>
+                            </div>
+                        </div>
+                        <div class="event-tech">
+                            <h4>Tecnologias:</h4>
+                            <div class="tech-list">
+                                <span class="tech-tag">Hologramas 8K</span>
+                                <span class="tech-tag">IA Interativa</span>
+                                <span class="tech-tag">Realidade Mista</span>
+                            </div>
+                        </div>
+                        <div class="event-actions">
+                            <button class="btn btn-primary" onclick="requestInvitation('techcorp-launch')">
+                                <i class="fas fa-envelope"></i> Solicitar Convite
+                            </button>
+                            <button class="btn btn-secondary" onclick="viewEventDetails('techcorp-launch')">
+                                <i class="fas fa-info"></i> Detalhes
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="event-card" data-category="private">
+                    <div class="event-date">
+                        <div class="date-box">
+                            <span class="day">05</span>
+                            <span class="month">AGO</span>
+                        </div>
+                        <div class="event-status booking">RESERVAS ABERTAS</div>
+                    </div>
+                    <div class="event-image">
+                        <div class="image-placeholder private-bg">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <div class="event-overlay">
+                            <div class="event-price">Sob Consulta</div>
+                        </div>
+                    </div>
+                    <div class="event-content">
+                        <div class="event-header">
+                            <h3 class="event-title">Casamento Futurista Elite</h3>
+                            <div class="event-rating">
+                                <i class="fas fa-star"></i>
+                                <span>5.0</span>
+                            </div>
+                        </div>
+                        <p class="event-description">Cerimônia de casamento com experiências visuais únicas e artistas exclusivos</p>
+                        <div class="event-details">
+                            <div class="detail-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Jardim Botânico Cyber</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-clock"></i>
+                                <span>05 Ago • 16:00 - 02:00</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-users"></i>
+                                <span>200 convidados</span>
+                            </div>
+                        </div>
+                        <div class="event-features">
+                            <h4>Experiências:</h4>
+                            <div class="feature-list">
+                                <span class="feature-tag">Drones Luminosos</span>
+                                <span class="feature-tag">Quantum Orchestra</span>
+                                <span class="feature-tag">Fotografia 360°</span>
+                            </div>
+                        </div>
+                        <div class="event-actions">
+                            <button class="btn btn-primary" onclick="consultPrivateEvent('elite-wedding')">
+                                <i class="fas fa-calendar-check"></i> Consultar Disponibilidade
+                            </button>
+                            <button class="btn btn-secondary" onclick="viewEventDetails('elite-wedding')">
+                                <i class="fas fa-info"></i> Detalhes
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="event-card" data-category="virtual">
+                    <div class="event-date">
+                        <div class="date-box">
+                            <span class="day">12</span>
+                            <span class="month">AGO</span>
+                        </div>
+                        <div class="event-status virtual">VIRTUAL</div>
+                    </div>
+                    <div class="event-image">
+                        <div class="image-placeholder virtual-bg">
+                            <i class="fas fa-vr-cardboard"></i>
+                        </div>
+                        <div class="event-overlay">
+                            <div class="event-price">R$ 50 - R$ 200</div>
+                        </div>
+                    </div>
+                    <div class="event-content">
+                        <div class="event-header">
+                            <h3 class="event-title">Concerto Metaverso Global</h3>
+                            <div class="event-rating">
+                                <i class="fas fa-star"></i>
+                                <span>4.7</span>
+                            </div>
+                        </div>
+                        <p class="event-description">Experiência musical imersiva no metaverso com artistas de todo o mundo</p>
+                        <div class="event-details">
+                            <div class="detail-item">
+                                <i class="fas fa-globe"></i>
+                                <span>Metaverso NeoSpace</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-clock"></i>
+                                <span>12 Ago • 20:00 - 23:00</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-users"></i>
+                                <span>Ilimitado</span>
+                            </div>
+                        </div>
+                        <div class="event-platforms">
+                            <h4>Plataformas:</h4>
+                            <div class="platform-list">
+                                <span class="platform-tag">VR Headset</span>
+                                <span class="platform-tag">Desktop</span>
+                                <span class="platform-tag">Mobile</span>
+                            </div>
+                        </div>
+                        <div class="event-actions">
+                            <button class="btn btn-primary" onclick="joinVirtualEvent('metaverse-concert')">
+                                <i class="fas fa-play"></i> Entrar no Evento
+                            </button>
+                            <button class="btn btn-secondary" onclick="viewEventDetails('metaverse-concert')">
+                                <i class="fas fa-info"></i> Detalhes
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Event Planning Section -->
+    <section id="event-planning" class="event-planning">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Crie Seu <span class="accent-text">Evento</span></h2>
+                <p class="section-subtitle">Planejamento completo do conceito à execução</p>
+            </div>
+            
+            <div class="planning-steps">
+                <div class="step-card">
+                    <div class="step-number">01</div>
+                    <div class="step-content">
+                        <h3>Conceituação</h3>
+                        <p>Definimos o conceito e objetivos do seu evento com nossa equipe criativa</p>
+                        <ul>
+                            <li>Briefing detalhado</li>
+                            <li>Análise de público-alvo</li>
+                            <li>Definição de experiências</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="step-card">
+                    <div class="step-number">02</div>
+                    <div class="step-content">
+                        <h3>Planejamento</h3>
+                        <p>Desenvolvemos o projeto completo com tecnologias inovadoras</p>
+                        <ul>
+                            <li>Design de experiência</li>
+                            <li>Seleção de tecnologias</li>
+                            <li>Cronograma detalhado</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="step-card">
+                    <div class="step-number">03</div>
+                    <div class="step-content">
+                        <h3>Execução</h3>
+                        <p>Realizamos seu evento com perfeição técnica e criativa</p>
+                        <ul>
+                            <li>Montagem profissional</li>
+                            <li>Suporte técnico 24h</li>
+                            <li>Monitoramento em tempo real</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="planning-cta">
+                <button class="btn btn-primary btn-large" onclick="startEventPlanning()">
+                    <i class="fas fa-rocket"></i> Iniciar Planejamento
+                </button>
+                <button class="btn btn-secondary btn-large" onclick="requestQuote()">
+                    <i class="fas fa-calculator"></i> Solicitar Orçamento
+                </button>
+            </div>
+             <!-- Event Planning Modal -->
+    <div id="planning-modal" class="modal">
+        <div class="modal-content large">
+            <div class="modal-header">
+                <h2>Planejamento de Evento</h2>
+                <span class="modal-close" onclick="closePlanningModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="planning-form" class="planning-form">
+                    <div class="form-section">
+                        <h3>Informações Básicas</h3>
+                        <div class="form-row">
+                            <div class="form-group">                            
+                                  <textarea type="text" id="event-name" name="event-name" rows="4" placeholder="Nome do seu evento..." required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="event-category"></label>
+                                <select id="event-category" name="event-category" required>
+                                    <option value="">Selecione uma categoria</option>
+                                    <option value="corporate">Corporativo</option>
+                                    <option value="entertainment">Entretenimento</option>
+                                    <option value="private">Privado</option>
+                                    <option value="virtual">Virtual</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="event-date-start"></label>
+                                <input type="date" id="event-date-start" name="event-date-start" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="event-date-end"></label>
+                                <input type="date" id="event-date-end" name="event-date-end">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="event-location-type"></label>
+                            <select id="event-location-type" name="event-location-type" required>
+                                <option value="">Selecione</option>
+                                <option value="indoor">Ambiente Fechado</option>
+                                <option value="outdoor">Ambiente Aberto</option>
+                                <option value="hybrid">Híbrido</option>
+                                <option value="virtual">100% Virtual</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="event-description"></label>
+                            <textarea id="event-description" name="event-description" rows="4" placeholder="Descreva a visão do seu evento..."></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="form-section">
+                        <h3>Audiência e Capacidade</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="expected-attendees">Número de Participantes</label>
+                                <select id="expected-attendees" name="expected-attendees" required>
+                                    <option value=""></option>
+                                    <option value="50-100">50-100 pessoas</option>
+                                    <option value="100-500">100-500 pessoas</option>
+                                    <option value="500-1000">500-1.000 pessoas</option>
+                                    <option value="1000-5000">1.000-5.000 pessoas</option>
+                                    <option value="5000+">5.000+ pessoas</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="target-audience">Público-Alvo</label>
+                                <select id="target-audience" name="target-audience" required>
+                                    <option value=""></option>
+                                    <option value="corporate">Profissionais/Executivos</option>
+                                    <option value="young-adults">Jovens Adultos (18-35)</option>
+                                    <option value="families">Famílias</option>
+                                    <option value="seniors">Adultos Maduros (35+)</option>
+                                    <option value="mixed">Público Misto</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-section">
+                        <h3>Tecnologias e Experiências</h3>
+                        <div class="tech-options">
+                            <label class="tech-checkbox">
+                                <input type="checkbox" name="tech[]" value="holography">
+                                <span class="checkmark"></span>
+                                <div class="tech-info">
+                                    <strong>Holografia</strong>
+                                    <p>Apresentações holográficas 8K</p>
+                                </div>
+                            </label>
+                            
+                            <label class="tech-checkbox">
+                                <input type="checkbox" name="tech[]" value="ar-vr">
+                                <span class="checkmark"></span>
+                                <div class="tech-info">
+                                    <strong>AR/VR</strong>
+                                    <p>Realidade Aumentada e Virtual</p>
+                                </div>
+                            </label>
+                            
+                            <label class="tech-checkbox">
+                                <input type="checkbox" name="tech[]" value="drones">
+                                <span class="checkmark"></span>
+                                <div class="tech-info">
+                                    <strong>Shows de Drones</strong>
+                                    <p>Espetáculos aéreos sincronizados</p>
+                                </div>
+                            </label>
+                            
+                            <label class="tech-checkbox">
+                                <input type="checkbox" name="tech[]" value="interactive">
+                                <span class="checkmark"></span>
+                                <div class="tech-info">
+                                    <strong>Experiências Interativas</strong>
+                                    <p>Tecnologias de engajamento</p>
+                                </div>
+                            </label>
+                            
+                            <label class="tech-checkbox">
+                                <input type="checkbox" name="tech[]" value="streaming">
+                                <span class="checkmark"></span>
+                                <div class="tech-info">
+                                    <strong>Transmissão 4K</strong>
+                                    <p>Streaming de alta qualidade</p>
+                                </div>
+                            </label>
+                            
+                            <label class="tech-checkbox">
+                                <input type="checkbox" name="tech[]" value="ai">
+                                <span class="checkmark"></span>
+                                <div class="tech-info">
+                                    <strong>IA Interativa</strong>
+                                    <p>Assistentes e analytics em tempo real</p>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-section">
+                        <h3>Orçamento e Contato</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="budget-range">Faixa de Orçamento</label>
+                                <select id="budget-range" name="budget-range" required>
+                                    <option value=""></option>
+                                    <option value="50k-100k">R$ 50.000 - R$ 100.000</option>
+                                    <option value="100k-250k">R$ 100.000 - R$ 250.000</option>
+                                    <option value="250k-500k">R$ 250.000 - R$ 500.000</option>
+                                    <option value="500k-1m">R$ 500.000 - R$ 1.000.000</option>
+                                    <option value="1m+">R$ 1.000.000+</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="urgency">Urgência</label>
+                                <select id="urgency" name="urgency" required>
+                                    <option value=""></option>
+                                    <option value="low">Baixa (3+ meses)</option>
+                                    <option value="medium">Média (1-3 meses)</option>
+                                    <option value="high">Alta (menos de 1 mês)</option>
+                                    <option value="urgent">Urgente (menos de 2 semanas)</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="contact-name-planning">Nome Completo</label>
+                                <input type="text" id="contact-name-planning" name="contact-name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="company">Empresa (opcional)</label>
+                                <input type="text" id="company" name="company">
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="contact-email-planning">Email</label>
+                                <input type="email" id="contact-email-planning" name="contact-email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="contact-phone-planning">Telefone</label>
+                                <input type="tel" id="contact-phone-planning" name="contact-phone" required>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary btn-full">
+                            <i class="fas fa-paper-plane"></i> Enviar Solicitação de Planejamento
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+        </div>
+    </section>
+
+   
+
+    <script src="script.js"></script>
+    <script src="events-page.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+    // Events Page JavaScript
+
+// Global variables
+let currentEventFilter = 'all';
+let eventsData = [
+    {
+        id: 'festival-digital-paradise',
+        title: 'Festival Digital Paradise 2025',
+        category: 'entertainment',
+        date: '2025-07-15',
+        price: 'R$ 150 - R$ 500',
+        location: 'Parque Tecnológico Neo',
+        status: 'live'
+    },
+    {
+        id: 'techcorp-launch',
+        title: 'Lançamento TechCorp 2025',
+        category: 'corporate',
+        date: '2025-07-22',
+        price: 'Apenas Convidados',
+        location: 'Centro de Convenções Neo',
+        status: 'upcoming'
+    },
+    {
+        id: 'elite-wedding',
+        title: 'Casamento Futurista Elite',
+        category: 'private',
+        date: '2025-08-05',
+        price: 'Sob Consulta',
+        location: 'Jardim Botânico Cyber',
+        status: 'booking'
+    },
+    {
+        id: 'metaverse-concert',
+        title: 'Concerto Metaverso Global',
+        category: 'virtual',
+        date: '2025-08-12',
+        price: 'R$ 50 - R$ 200',
+        location: 'Metaverso NeoSpace',
+        status: 'virtual'
+    }
+];
+
+// Initialize events page
+document.addEventListener('DOMContentLoaded', function() {
+    initializeEventsPage();
+});
+
+function initializeEventsPage() {
+    initializeNavigation();
+    initializeEventFilters();
+    initializeScrollAnimations();
+    initializePlanningModal();
+    
+    // Add click handlers for category cards
+    const categoryCards = document.querySelectorAll('.category-card');
+    categoryCards.forEach(card => {
+        card.addEventListener('click', () => {
+            const category = card.getAttribute('data-category');
+            scrollToSection('upcoming-events');
+            setTimeout(() => filterEvents(category), 500);
+        });
+    });
+}
+
+// Event Filter Functions
+function initializeEventFilters() {
+    const filterButtons = document.querySelectorAll('.events-filter .filter-btn');
+    
+    filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const filter = button.getAttribute('data-filter');
+            
+            // Update active button
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+            
+            // Filter events
+            filterEvents(filter);
+            currentEventFilter = filter;
+        });
+    });
+}
+
+function filterEvents(filter) {
+    const eventCards = document.querySelectorAll('.event-card');
+    
+    eventCards.forEach((card, index) => {
+        const category = card.getAttribute('data-category');
+        const shouldShow = filter === 'all' || category === filter;
+        
+        setTimeout(() => {
+            if (shouldShow) {
+                card.style.display = 'grid';
+                card.classList.remove('hidden');
+                card.style.animationDelay = `${index * 100}ms`;
+                card.classList.add('fade-in', 'visible');
+            } else {
+                card.classList.add('hidden');
+                setTimeout(() => {
+                    if (card.classList.contains('hidden')) {
+                        card.style.display = 'none';
+                    }
+                }, 500);
+            }
+        }, index * 100);
+    });
+    
+    // Update filter buttons in events section
+    const eventsFilterButtons = document.querySelectorAll('.events-filter .filter-btn');
+    eventsFilterButtons.forEach(btn => btn.classList.remove('active'));
+    
+    const targetButton = document.querySelector(`.events-filter .filter-btn[data-filter="${filter}"]`);
+    if (targetButton) {
+        targetButton.classList.add('active');
+    }
+}
+
+// Event Action Functions
+function buyTickets(eventId) {
+    const event = eventsData.find(e => e.id === eventId);
+    if (!event) return;
+    
+    showNotification(`Redirecionando para compra de ingressos do evento "${event.title}"...`, 'info');
+    
+    // Simulate ticket purchase flow
+    setTimeout(() => {
+        showNotification('Sistema de vendas em desenvolvimento. Em breve você poderá comprar ingressos online!', 'info');
+    }, 2000);
+}
+
+function requestInvitation(eventId) {
+    const event = eventsData.find(e => e.id === eventId);
+    if (!event) return;
+    
+    showNotification(`Solicitação de convite para "${event.title}" enviada com sucesso!`, 'success');
+    
+    setTimeout(() => {
+        showNotification('Nossa equipe entrará em contato em até 24 horas.', 'info');
+    }, 2000);
+}
+
+function consultPrivateEvent(eventId) {
+    const event = eventsData.find(e => e.id === eventId);
+    if (!event) return;
+    
+    showNotification(`Consultando disponibilidade para "${event.title}"...`, 'info');
+    
+    setTimeout(() => {
+        showNotification('Consulta enviada! Nossa equipe de eventos privados entrará em contato.', 'success');
+    }, 2000);
+}
+
+function joinVirtualEvent(eventId) {
+    const event = eventsData.find(e => e.id === eventId);
+    if (!event) return;
+    
+    showNotification(`Preparando acesso ao evento virtual "${event.title}"...`, 'info');
+    
+    setTimeout(() => {
+        showNotification('Plataforma virtual em desenvolvimento. Em breve você poderá participar de eventos no metaverso!', 'info');
+    }, 2000);
+}
+
+function viewEventDetails(eventId) {
+    const event = eventsData.find(e => e.id === eventId);
+    if (!event) return;
+    
+    showNotification(`Carregando detalhes do evento "${event.title}"...`, 'info');
+    
+    // In a real application, this would open a detailed event page
+    setTimeout(() => {
+        showNotification('Página de detalhes em desenvolvimento. Em breve você terá acesso completo às informações!', 'info');
+    }, 1500);
+}
+
+// Planning Modal Functions
+function initializePlanningModal() {
+    const planningForm = document.getElementById('planning-form');
+    if (planningForm) {
+        planningForm.addEventListener('submit', handlePlanningSubmission);
     }
     
-    .event-date {
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        padding: 1.5rem;
-        border-right: none;
-        border-bottom: 1px solid var(--border-color);
-    }
-    
-    .date-box {
-        margin-bottom: 0;
-    }
-    
-    .event-image {
-        height: 200px;
+    // Close modal when clicking outside
+    const modal = document.getElementById('planning-modal');
+    if (modal) {
+        modal.addEventListener('click', function(e) {
+            if (e.target === this) {
+                closePlanningModal();
+            }
+        });
     }
 }
 
-@media (max-width: 768px) {
-    .categories-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .planning-steps {
-        grid-template-columns: 1fr;
-    }
-    
-    .hero-cta,
-    .planning-cta {
-        flex-direction: column;
-        align-items: center;
-    }
-    
-    .events-filter {
-        justify-content: flex-start;
-        overflow-x: auto;
-        padding-bottom: 0.5rem;
-    }
-    
-    .events-filter .filter-btn {
-        flex-shrink: 0;
-    }
-    
-    .event-actions {
-        flex-direction: column;
-    }
-    
-    .tech-options {
-        grid-template-columns: 1fr;
-    }
-    
-    .planning-form .form-row {
-        grid-template-columns: 1fr;
+function startEventPlanning() {
+    const modal = document.getElementById('planning-modal');
+    if (modal) {
+        modal.style.display = 'block';
+        document.body.style.overflow = 'hidden';
+        
+        // Animate modal in
+        setTimeout(() => {
+            const modalContent = modal.querySelector('.modal-content');
+            modalContent.style.transform = 'scale(1)';
+            modalContent.style.opacity = '1';
+        }, 10);
     }
 }
 
-/* Animation Classes */
-.fade-in {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.8s ease;
+function closePlanningModal() {
+    const modal = document.getElementById('planning-modal');
+    if (modal) {
+        const modalContent = modal.querySelector('.modal-content');
+        modalContent.style.transform = 'scale(0.9)';
+        modalContent.style.opacity = '0';
+        
+        setTimeout(() => {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+            resetPlanningForm();
+        }, 300);
+    }
 }
 
-.fade-in.visible {
-    opacity: 1;
-    transform: translateY(0);
+function resetPlanningForm() {
+    const form = document.getElementById('planning-form');
+    if (form) {
+        form.reset();
+        
+        // Reset all checkboxes
+        const checkboxes = form.querySelectorAll('input[type="checkbox"]');
+        checkboxes.forEach(checkbox => {
+            checkbox.checked = false;
+        });
+    }
 }
 
-.event-card.hidden {
-    opacity: 0;
-    transform: scale(0.95);
-    transition: all 0.5s ease;
+function requestQuote() {
+    showNotification('Redirecionando para formulário de orçamento...', 'info');
+    
+    setTimeout(() => {
+        startEventPlanning();
+    }, 1000);
 }
+
+function handlePlanningSubmission(e) {
+    e.preventDefault();
+    
+    const formData = new FormData(e.target);
+    const submitButton = e.target.querySelector('button[type="submit"]');
+    const originalText = submitButton.innerHTML;
+    
+    // Show loading state
+    submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processando...';
+    submitButton.disabled = true;
+    
+    // Get selected technologies
+    const selectedTech = [];
+    const techCheckboxes = e.target.querySelectorAll('input[name="tech[]"]:checked');
+    techCheckboxes.forEach(checkbox => {
+        selectedTech.push(checkbox.value);
+    });
+    
+    // Simulate API call
+    setTimeout(() => {
+        // Show success notification
+        showNotification('Solicitação de planejamento enviada com sucesso! Nossa equipe entrará em contato em breve.', 'success');
+        
+        // Show additional info based on selections
+        if (selectedTech.length > 0) {
+            setTimeout(() => {
+                const techNames = {
+                    'holography': 'Holografia',
+                    'ar-vr': 'AR/VR',
+                    'drones': 'Shows de Drones',
+                    'interactive': 'Experiências Interativas',
+                    'streaming': 'Transmissão 4K',
+                    'ai': 'IA Interativa'
+                };
+                
+                const selectedNames = selectedTech.map(tech => techNames[tech]).join(', ');
+                showNotification(`Tecnologias selecionadas: ${selectedNames}. Nossos especialistas prepararão uma proposta personalizada.`, 'info');
+            }, 2000);
+        }
+        
+        // Close modal and reset form
+        closePlanningModal();
+        
+        // Reset button
+        submitButton.innerHTML = originalText;
+        submitButton.disabled = false;
+        
+        // Send confirmation email simulation
+        setTimeout(() => {
+            showNotification('Email de confirmação enviado! Verifique sua caixa de entrada.', 'info');
+        }, 3000);
+        
+    }, 3000);
+}
+
+// Utility Functions
+function scrollToSection(sectionId) {
+    const section = document.getElementById(sectionId);
+    if (section) {
+        const offsetTop = section.offsetTop - 100;
+        window.scrollTo({
+            top: offsetTop,
+            behavior: 'smooth'
+        });
+    }
+}
+
+function initializeScrollAnimations() {
+    const observeElements = document.querySelectorAll(
+        '.category-card, .event-card, .step-card, .hero-content'
+    );
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('fade-in', 'visible');
+                
+                // Stagger animation for grid items
+                if (entry.target.classList.contains('category-card') ||
+                    entry.target.classList.contains('step-card')) {
+                    const cards = Array.from(entry.target.parentElement.children);
+                    const delay = cards.indexOf(entry.target) * 150;
+                    entry.target.style.animationDelay = `${delay}ms`;
+                }
+            }
+        });
+    }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    });
+    
+    observeElements.forEach(el => {
+        el.classList.add('fade-in');
+        observer.observe(el);
+    });
+}
+
+// Notification System (reusing from artists page)
+function showNotification(message, type = 'info') {
+    const notification = document.createElement('div');
+    notification.className = `notification notification-${type}`;
+    notification.innerHTML = `
+        <span>${message}</span>
+        <button class="notification-close">&times;</button>
+    `;
+    
+    // Add styles
+    Object.assign(notification.style, {
+        position: 'fixed',
+        top: '100px',
+        right: '20px',
+        padding: '1rem 1.5rem',
+        borderRadius: '8px',
+        color: '#fff',
+        fontSize: '0.9rem',
+        zIndex: '10001',
+        transform: 'translateX(400px)',
+        transition: 'transform 0.3s ease',
+        maxWidth: '400px',
+        wordWrap: 'break-word'
+    });
+    
+    // Set background color based on type
+    switch (type) {
+        case 'success':
+            notification.style.background = 'linear-gradient(135deg, #00ff88, #00cc6a)';
+            break;
+        case 'error':
+            notification.style.background = 'linear-gradient(135deg, #ff4757, #ff3838)';
+            break;
+        default:
+            notification.style.background = 'linear-gradient(135deg, #00f5ff, #0099cc)';
+    }
+    
+    document.body.appendChild(notification);
+    
+    // Animate in
+    setTimeout(() => {
+        notification.style.transform = 'translateX(0)';
+    }, 100);
+    
+    // Close button functionality
+    const closeButton = notification.querySelector('.notification-close');
+    closeButton.style.background = 'none';
+    closeButton.style.border = 'none';
+    closeButton.style.color = 'inherit';
+    closeButton.style.marginLeft = '1rem';
+    closeButton.style.cursor = 'pointer';
+    closeButton.style.fontSize = '1.2rem';
+    
+    closeButton.addEventListener('click', () => {
+        removeNotification(notification);
+    });
+    
+    // Auto remove after 5 seconds
+    setTimeout(() => {
+        removeNotification(notification);
+    }, 5000);
+}
+
+function removeNotification(notification) {
+    notification.style.transform = 'translateX(400px)';
+    setTimeout(() => {
+        if (notification.parentElement) {
+            notification.parentElement.removeChild(notification);
+        }
+    }, 300);
+}
+
+// Add smooth modal animation styles
+if (!document.querySelector('#events-modal-styles')) {
+    const style = document.createElement('style');
+    style.id = 'events-modal-styles';
+    style.textContent = `
+        .modal-content {
+            transform: scale(0.9);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+        
+        .event-card.hidden {
+            opacity: 0;
+            transform: scale(0.95);
+            transition: all 0.5s ease;
+        }
+        
+        .category-card {
+            cursor: pointer;
+        }
+        
+        .planning-form::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        .planning-form::-webkit-scrollbar-track {
+            background: var(--surface-color);
+            border-radius: 3px;
+        }
+        
+        .planning-form::-webkit-scrollbar-thumb {
+            background: var(--primary-color);
+            border-radius: 3px;
+        }
+        
+        .planning-form::-webkit-scrollbar-thumb:hover {
+            background: var(--secondary-color);
+        }
+    `;
+    document.head.appendChild(style);
+}
+</script>
