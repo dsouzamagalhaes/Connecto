@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eventos - NeoEvents</title>
+    <title>Eventos - Connecto</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="events-page.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
@@ -14,13 +14,13 @@
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <div class="nav-logo">
-                <a href="index.html" class="logo-text">Neo<span class="logo-accent">Events</span></a>
+                <a href="index.html" class="logo-text">Con<span class="logo-accent">necto</span></a>
             </div>
             <div class="nav-menu" id="nav-menu">
                 <a href="index.html" class="nav-link">Início</a>
                 <a href="artists.html" class="nav-link">Artistas</a>
                 <a href="events.html" class="nav-link active">Eventos</a>
-                <a href="index.html#contact" class="nav-link">Contato</a>
+                <a href="#contact" class="nav-link">Contato</a>
             </div>
             <div class="hamburger" id="hamburger">
                 <span class="bar"></span>
@@ -428,10 +428,7 @@
                     <i class="fas fa-calculator"></i> Solicitar Orçamento
                 </button>
             </div>
-        </div>
-    </section>
-
-    <!-- Event Planning Modal -->
+             <!-- Event Planning Modal -->
     <div id="planning-modal" class="modal">
         <div class="modal-content large">
             <div class="modal-header">
@@ -443,12 +440,11 @@
                     <div class="form-section">
                         <h3>Informações Básicas</h3>
                         <div class="form-row">
-                            <div class="form-group">
-                                <label for="event-name">Nome do Evento</label>
-                                <input type="text" id="event-name" name="event-name" required>
+                            <div class="form-group">                            
+                                  <textarea type="text" id="event-name" name="event-name" rows="4" placeholder="Nome do seu evento..." required></textarea>
                             </div>
                             <div class="form-group">
-                                <label for="event-category">Categoria</label>
+                                <label for="event-category"></label>
                                 <select id="event-category" name="event-category" required>
                                     <option value="">Selecione uma categoria</option>
                                     <option value="corporate">Corporativo</option>
@@ -461,17 +457,17 @@
                         
                         <div class="form-row">
                             <div class="form-group">
-                                <label for="event-date-start">Data de Início</label>
+                                <label for="event-date-start"></label>
                                 <input type="date" id="event-date-start" name="event-date-start" required>
                             </div>
                             <div class="form-group">
-                                <label for="event-date-end">Data de Término</label>
+                                <label for="event-date-end"></label>
                                 <input type="date" id="event-date-end" name="event-date-end">
                             </div>
                         </div>
                         
                         <div class="form-group">
-                            <label for="event-location-type">Tipo de Local</label>
+                            <label for="event-location-type"></label>
                             <select id="event-location-type" name="event-location-type" required>
                                 <option value="">Selecione</option>
                                 <option value="indoor">Ambiente Fechado</option>
@@ -482,7 +478,7 @@
                         </div>
                         
                         <div class="form-group">
-                            <label for="event-description">Descrição do Evento</label>
+                            <label for="event-description"></label>
                             <textarea id="event-description" name="event-description" rows="4" placeholder="Descreva a visão do seu evento..."></textarea>
                         </div>
                     </div>
@@ -493,7 +489,7 @@
                             <div class="form-group">
                                 <label for="expected-attendees">Número de Participantes</label>
                                 <select id="expected-attendees" name="expected-attendees" required>
-                                    <option value="">Selecione</option>
+                                    <option value=""></option>
                                     <option value="50-100">50-100 pessoas</option>
                                     <option value="100-500">100-500 pessoas</option>
                                     <option value="500-1000">500-1.000 pessoas</option>
@@ -504,7 +500,7 @@
                             <div class="form-group">
                                 <label for="target-audience">Público-Alvo</label>
                                 <select id="target-audience" name="target-audience" required>
-                                    <option value="">Selecione</option>
+                                    <option value=""></option>
                                     <option value="corporate">Profissionais/Executivos</option>
                                     <option value="young-adults">Jovens Adultos (18-35)</option>
                                     <option value="families">Famílias</option>
@@ -580,7 +576,7 @@
                             <div class="form-group">
                                 <label for="budget-range">Faixa de Orçamento</label>
                                 <select id="budget-range" name="budget-range" required>
-                                    <option value="">Selecione</option>
+                                    <option value=""></option>
                                     <option value="50k-100k">R$ 50.000 - R$ 100.000</option>
                                     <option value="100k-250k">R$ 100.000 - R$ 250.000</option>
                                     <option value="250k-500k">R$ 250.000 - R$ 500.000</option>
@@ -591,7 +587,7 @@
                             <div class="form-group">
                                 <label for="urgency">Urgência</label>
                                 <select id="urgency" name="urgency" required>
-                                    <option value="">Selecione</option>
+                                    <option value=""></option>
                                     <option value="low">Baixa (3+ meses)</option>
                                     <option value="medium">Média (1-3 meses)</option>
                                     <option value="high">Alta (menos de 1 mês)</option>
@@ -632,6 +628,10 @@
             </div>
         </div>
     </div>
+        </div>
+    </section>
+
+   
 
     <script src="script.js"></script>
     <script src="events-page.js"></script>
