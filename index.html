@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Teste API Artistas x Eventos</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; max-width: 1200px; }
+        .secao { border: 1px solid #ccc; padding: 15px; margin: 10px 0; }
+        input, textarea, select { margin: 5px; padding: 5px; width: 250px; }
+        input[type="datetime-local"] { width: 250px; }
+        button { background: #007bff; color: white; padding: 8px 12px; border: none; cursor: pointer; margin: 5px; }
+        .resultado { background: #f5f5f5; padding: 10px; margin: 10px 0; border: 1px solid #ddd; white-space: pre-wrap; }
+        .erro { color: #d32f2f; background: #ffebee; padding: 10px; border: 1px solid #d32f2f; }
+        .sucesso { color: #2e7d32; background: #e8f5e8; padding: 10px; border: 1px solid #2e7d32; }
+        .info { color: #1976d2; background: #e3f2fd; padding: 10px; border: 1px solid #1976d2; }
+        .checkbox-group { margin: 10px 0; }
+        .checkbox-group label { display: block; margin: 5px 0; }
+        .endpoint { background: #f0f8ff; padding: 10px; margin: 5px 0; border-left: 4px solid #007bff; }
+        .endpoint h4 { margin: 0; color: #007bff; }
+        .endpoint code { background: #e9ecef; padding: 2px 5px; border-radius: 3px; }
+    </style>
+</head>
+<body>
+    <h1>🎵 API Artistas x Eventos - Teste Completo</h1>
+
+    <!-- Documentação dos Endpoints -->
+    <div class="secao">
+        <h2>📋 Documentação dos Endpoints</h2>
+        
+        <div class="endpoint">
+            <h4>🔐 AUTENTICAÇÃO</h4>
+            <code>POST /api/auth/register</code> - Registrar usuário (artista/organizador)<br>
+            <code>POST /api/auth/login</code> - Login de usuário<br>
+        </div>
+
+        <div class="endpoint">
+            <h4>🎤 ARTISTAS</h4>
+            <code>GET /api/artistas</code> - Listar todos artistas<br>
+            <code>GET /api/artistas/:id</code> - Buscar artista por ID<br>
+            <code>GET /api/artistas/genero/:genero</code> - Buscar artistas por gênero<br>
+            <code>PUT /api/artistas/:id</code> - Atualizar perfil do artista<br>
+        </div>
+
+        <div class="endpoint">
+            <h4>🏢 ORGANIZADORES</h4>
+            <code>GET /api/organizadores</code> - Listar todos organizadores<br>
+            <code>GET /api/organizadores/:id</code> - Buscar organizador por ID<br>
+            <code>PUT /api/organizadores/:id</code> - Atualizar perfil do organizador<br>
+        </div>
+
+        <div class="endpoint">
+            <h4>🎭 EVENTOS</h4>
+            <code>GET /api/eventos</code> - Listar todos eventos<br>
+            <code>GET /api/eventos/:id</code> - Buscar evento por ID<br>
+            <code>POST /api/eventos</code> - Criar novo evento (apenas organizadores)<br>
+            <code>PUT /api/eventos/:id</code> - Atualizar evento (apenas dono)<br>
+            <code>GET /api/eventos/:id/artistas</code> - Listar artistas do evento<br>
+            <code>POST /api/eventos/:id/artistas/:artistaId</code> - Adicionar artista ao evento<br>
+            <code>DELETE /api/eventos/:id/artistas/:artistaId</code> - Remover artista do evento<br>
+        </div>
+
+        <div class="endpoint">
+            <h4>🎵 GÊNEROS</h4>
+            <code>GET /api/generos</code> - Listar gêneros disponíveis<br>
+            <code>POST /api/generos</code> - Criar novo gênero (apenas autenticados)<br>
+        </div>
+
+        <div class="endpoint">
+            <h4>🩺 HEALTH CHECK</h4>
+            <code>GET /api/health</code> - Verificar status da API<br>
+        </div>
+    </div>
+
+    <!-- Health Check -->
+    <div class="secao">
+        <h2>🩺 Status da API</h2>
+        <button onclick="testarHealth()">Testar Health Check</button>
+        <div id="health-result" class="resultado"></div>
+    </div>
+
+    <!-- Autenticação -->
+    <div class="secao">
+        <h2>🔐 Autenticação</h2>
+        
+        <h3>Registrar Novo Usuário</h3>
+        <select id="tipo-usuario" onchange="toggleGeneros()">
+            <option value="artista">Artista</option>
+            <option value="organizador">Organizador</option>
+        </select><br>
+        
+        <input type="text" id="nome" placeholder="Nome completo" value="João Silva"><br>
+        <input type="email" id="email" placeholder="Email" value="joao@email.com"><br>
+        <input type="password" id="senha" placeholder="Senha (mínimo 6 caracteres)" value="123456"><br>
+        <textarea id="descricao" placeholder="Descrição">Artista talentoso</textarea><br>
+        
+        <div id="generos-container" style="display: block;">
+            <h4>Selecione os gêneros musicais:</h4>
+            <div id="generos-checkboxes" class="checkbox-group">
+                <!-- Gerado dinamicamente -->
+            </div>
+        </div>
+        
+        <button onclick="registrar()">Registrar</button>
+
+        <h3>Login</h3>
+        <input type="email" id="login-email" placeholder="Email" value="joao@email.com"><br>
+        <input type="password" id="login-senha" placeholder="Senha" value="123456"><br>
+        <button onclick="login()">Login</button>
+
+        <div id="auth-result" class="resultado"></div>
+        
+        <div id="token-info" style="display:none;">
+            <h3>Token JWT</h3>
+            <div id="token" class="resultado"></div>
+            <button onclick="logout()">Logout</button>
+        </div>
+    </div>
+
+    <!-- Gêneros Disponíveis -->
+    <div class="secao">
+        <h2>🎵 Gêneros Musicais</h2>
+        <button onclick="listarGeneros()">Listar Gêneros</button>
+        <input type="text" id="novo-genero" placeholder="Nome do novo gênero" value="MPB">
+        <button onclick="criarGenero()">Criar Gênero</button>
+        <div id="generos-result" class="resultado"></div>
+    </div>
+
+    <!-- Artistas -->
+    <div class="secao">
+        <h2>🎤 Artistas</h2>
+        <button onclick="listarArtistas()">Listar Todos os Artistas</button>
+        <input type="number" id="artista-id" placeholder="ID do Artista" value="1">
+        <button onclick="buscarArtista()">Buscar Artista por ID</button>
+        <input type="text" id="genero-busca" placeholder="Gênero musical" value="Rock">
+        <button onclick="buscarArtistasPorGenero()">Buscar por Gênero</button>
+        <div id="artistas-result" class="resultado"></div>
+    </div>
+
+    <!-- Organizadores -->
+    <div class="secao">
+        <h2>🏢 Organizadores</h2>
+        <button onclick="listarOrganizadores()">Listar Todos os Organizadores</button>
+        <input type="number" id="organizador-id" placeholder="ID do Organizador" value="1">
+        <button onclick="buscarOrganizador()">Buscar Organizador por ID</button>
+        <div id="organizadores-result" class="resultado"></div>
+    </div>
+
+    <!-- Eventos -->
+    <div class="secao">
+        <h2>🎭 Eventos</h2>
+        <button onclick="listarEventos()">Listar Todos os Eventos</button>
+        <input type="number" id="evento-id" placeholder="ID do Evento" value="1">
+        <button onclick="buscarEvento()">Buscar Evento por ID</button>
+        <button onclick="buscarArtistasDoEvento()">Artistas do Evento</button>
+        <div id="eventos-result" class="resultado"></div>
+    </div>
+
+    <!-- Criar Evento -->
+    <div class="secao">
+        <h2>📅 Criar Novo Evento</h2>
+        <input type="text" id="evento-descricao" placeholder="Descrição do evento" value="Show de Rock"><br>
+        <input type="text" id="evento-lugar" placeholder="Local do evento" value="Casa de Shows"><br>
+        <input type="datetime-local" id="evento-data"><br>
+        <button onclick="criarEvento()">Criar Evento</button>
+        <div id="criar-evento-result" class="resultado"></div>
+    </div>
+
+    <!-- Gerenciar Artistas no Evento -->
+    <div class="secao">
+        <h2>👥 Gerenciar Artistas no Evento</h2>
+        <input type="number" id="evento-artista-id" placeholder="ID do Evento" value="1">
+        <input type="number" id="artista-eventoid" placeholder="ID do Artista" value="1">
+        <button onclick="adicionarArtistaEvento()">Adicionar Artista ao Evento</button>
+        <button onclick="removerArtistaEvento()">Remover Artista do Evento</button>
+        <div id="gerenciar-artistas-result" class="resultado"></div>
+    </div>
+
+    <script>
+        const API_URL = 'http://localhost:3000/api';
+        let token = localStorage.getItem('token');
+        let generosDisponiveis = [];
+
+        // Inicializar a página
+        window.onload = function() {
+            testarHealth();
+            carregarGeneros();
+            
+            // Preencher data atual no campo de evento
+            const agora = new Date();
+            agora.setMinutes(agora.getMinutes() - agora.getTimezoneOffset());
+            document.getElementById('evento-data').value = agora.toISOString().slice(0, 16);
+            
+            if (token) {
+                document.getElementById('token-info').style.display = 'block';
+                document.getElementById('token').textContent = token;
+            }
+        };
+
+        // Carregar gêneros disponíveis
+        async function carregarGeneros() {
+            try {
+                const response = await fetch(`${API_URL}/generos`);
+                if (response.ok) {
+                    generosDisponiveis = await response.json();
+                    atualizarCheckboxesGeneros();
+                }
+            } catch (error) {
+                console.error('Erro ao carregar gêneros:', error);
+            }
+        }
+
+        function atualizarCheckboxesGeneros() {
+            const container = document.getElementById('generos-checkboxes');
+            container.innerHTML = '';
+            
+            generosDisponiveis.forEach(genero => {
+                const div = document.createElement('div');
+                div.innerHTML = `
+                    <label>
+                        <input type="checkbox" name="generos" value="${genero.nome}">
+                        ${genero.nome}
+                    </label>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        function toggleGeneros() {
+            const tipo = document.getElementById('tipo-usuario').value;
+            const container = document.getElementById('generos-container');
+            container.style.display = tipo === 'artista' ? 'block' : 'none';
+        }
+
+        async function fazerRequisicao(url, opcoes = {}) {
+            try {
+                if (token) {
+                    opcoes.headers = {
+                        ...opcoes.headers,
+                        'Authorization': `Bearer ${token}`
+                    };
+                }
+
+                if (!opcoes.headers) opcoes.headers = {};
+                if (!opcoes.headers['Content-Type'] && opcoes.body) {
+                    opcoes.headers['Content-Type'] = 'application/json';
+                }
+
+                const resposta = await fetch(url, opcoes);
+                const dados = await resposta.json();
+
+                if (!resposta.ok) {
+                    throw new Error(dados.error || `Erro ${resposta.status}`);
+                }
+
+                return dados;
+            } catch (erro) {
+                console.error('Erro na requisição:', erro);
+                throw erro;
+            }
+        }
+
+        function mostrarResultado(elementoId, dados, titulo = '') {
+            const resultadoDiv = document.getElementById(elementoId);
+            if (titulo) {
+                resultadoDiv.innerHTML = `<div class="info">${titulo}</div>`;
+            } else {
+                resultadoDiv.innerHTML = '';
+            }
+            
+            if (dados && typeof dados === 'object') {
+                resultadoDiv.innerHTML += JSON.stringify(dados, null, 2);
+            } else if (dados) {
+                resultadoDiv.innerHTML += dados;
+            }
+        }
+
+        function mostrarErro(elementoId, erro) {
+            document.getElementById(elementoId).innerHTML = 
+                `<div class="erro">ERRO: ${erro.message || erro}</div>`;
+        }
+
+        function mostrarSucesso(elementoId, mensagem) {
+            document.getElementById(elementoId).innerHTML = 
+                `<div class="sucesso">${mensagem}</div>`;
+        }
+
+        // Health Check
+        async function testarHealth() {
+            try {
+                const dados = await fazerRequisicao(`${API_URL}/health`);
+                mostrarResultado('health-result', dados, '✅ API está funcionando:');
+            } catch (erro) {
+                mostrarErro('health-result', erro);
+            }
+        }
+
+        // Autenticação
+        async function registrar() {
+            try {
+                const tipo = document.getElementById('tipo-usuario').value;
+                const usuario = {
+                    email: document.getElementById('email').value,
+                    senha: document.getElementById('senha').value,
+                    tipo: tipo,
+                    nome: document.getElementById('nome').value,
+                    descricao: document.getElementById('descricao').value
+                };
+
+                // Adicionar gêneros se for artista
+                if (tipo === 'artista') {
+                    const generosSelecionados = Array.from(
+                        document.querySelectorAll('input[name="generos"]:checked')
+                    ).map(checkbox => checkbox.value);
+                    
+                    usuario.generos = generosSelecionados;
+                }
+
+                const dados = await fazerRequisicao(`${API_URL}/auth/register`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(usuario)
+                });
+
+                token = dados.token;
+                localStorage.setItem('token', token);
+                document.getElementById('token-info').style.display = 'block';
+                document.getElementById('token').textContent = token;
+
+                mostrarSucesso('auth-result', '✅ Registro realizado com sucesso!');
+                mostrarResultado('auth-result', dados);
+            } catch (erro) {
+                mostrarErro('auth-result', erro);
+            }
+        }
+
+        async function login() {
+            try {
+                const loginDados = {
+                    email: document.getElementById('login-email').value,
+                    senha: document.getElementById('login-senha').value
+                };
+
+                const dados = await fazerRequisicao(`${API_URL}/auth/login`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(loginDados)
+                });
+
+                token = dados.token;
+                localStorage.setItem('token', token);
+                document.getElementById('token-info').style.display = 'block';
+                document.getElementById('token').textContent = token;
+
+                mostrarSucesso('auth-result', '✅ Login realizado com sucesso!');
+                mostrarResultado('auth-result', dados);
+            } catch (erro) {
+                mostrarErro('auth-result', erro);
+            }
+        }
+
+        function logout() {
+            token = null;
+            localStorage.removeItem('token');
+            document.getElementById('token-info').style.display = 'none';
+            mostrarSucesso('auth-result', '✅ Logout realizado!');
+        }
+
+        // Gêneros
+        async function listarGeneros() {
+            try {
+                const dados = await fazerRequisicao(`${API_URL}/generos`);
+                mostrarResultado('generos-result', dados, '🎵 Gêneros disponíveis:');
+            } catch (erro) {
+                mostrarErro('generos-result', erro);
+            }
+        }
+
+        async function criarGenero() {
+            try {
+                const nome = document.getElementById('novo-genero').value;
+                if (!nome) {
+                    throw new Error('Digite o nome do gênero');
+                }
+
+                const dados = await fazerRequisicao(`${API_URL}/generos`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ nome })
+                });
+
+                mostrarSucesso('generos-result', '✅ Gênero criado com sucesso!');
+                mostrarResultado('generos-result', dados);
+                
+                // Recarregar gêneros disponíveis
+                carregarGeneros();
+            } catch (erro) {
+                mostrarErro('generos-result', erro);
+            }
+        }
+
+        // Artistas
+        async function listarArtistas() {
+            try {
+                const dados = await fazerRequisicao(`${API_URL}/artistas`);
+                mostrarResultado('artistas-result', dados, '🎤 Todos os artistas:');
+            } catch (erro) {
+                mostrarErro('artistas-result', erro);
+            }
+        }
+
+        async function buscarArtista() {
+            try {
+                const id = document.getElementById('artista-id').value;
+                const dados = await fazerRequisicao(`${API_URL}/artistas/${id}`);
+                mostrarResultado('artistas-result', dados, `🎤 Artista ID ${id}:`);
+            } catch (erro) {
+                mostrarErro('artistas-result', erro);
+            }
+        }
+
+        async function buscarArtistasPorGenero() {
+            try {
+                const genero = document.getElementById('genero-busca').value;
+                const dados = await fazerRequisicao(`${API_URL}/artistas/genero/${genero}`);
+                mostrarResultado('artistas-result', dados, `🎤 Artistas de ${genero}:`);
+            } catch (erro) {
+                mostrarErro('artistas-result', erro);
+            }
+        }
+
+        // Organizadores
+        async function listarOrganizadores() {
+            try {
+                const dados = await fazerRequisicao(`${API_URL}/organizadores`);
+                mostrarResultado('organizadores-result', dados, '🏢 Todos os organizadores:');
+            } catch (erro) {
+                mostrarErro('organizadores-result', erro);
+            }
+        }
+
+        async function buscarOrganizador() {
+            try {
+                const id = document.getElementById('organizador-id').value;
+                const dados = await fazerRequisicao(`${API_URL}/organizadores/${id}`);
+                mostrarResultado('organizadores-result', dados, `🏢 Organizador ID ${id}:`);
+            } catch (erro) {
+                mostrarErro('organizadores-result', erro);
+            }
+        }
+
+        // Eventos
+        async function listarEventos() {
+            try {
+                const dados = await fazerRequisicao(`${API_URL}/eventos`);
+                mostrarResultado('eventos-result', dados, '🎭 Todos os eventos:');
+            } catch (erro) {
+                mostrarErro('eventos-result', erro);
+            }
+        }
+
+        async function buscarEvento() {
+            try {
+                const id = document.getElementById('evento-id').value;
+                const dados = await fazerRequisicao(`${API_URL}/eventos/${id}`);
+                mostrarResultado('eventos-result', dados, `🎭 Evento ID ${id}:`);
+            } catch (erro) {
+                mostrarErro('eventos-result', erro);
+            }
+        }
+
+        async function buscarArtistasDoEvento() {
+            try {
+                const id = document.getElementById('evento-id').value;
+                const dados = await fazerRequisicao(`${API_URL}/eventos/${id}/artistas`);
+                mostrarResultado('eventos-result', dados, `🎤 Artistas do Evento ID ${id}:`);
+            } catch (erro) {
+                mostrarErro('eventos-result', erro);
+            }
+        }
+
+        // Criar Evento
+        async function criarEvento() {
+            try {
+                if (!token) {
+                    throw new Error('Faça login primeiro como organizador');
+                }
+
+                const eventoData = {
+                    descricao: document.getElementById('evento-descricao').value,
+                    lugar: document.getElementById('evento-lugar').value,
+                    data: document.getElementById('evento-data').value
+                };
+
+                if (!eventoData.descricao || !eventoData.lugar || !eventoData.data) {
+                    throw new Error('Preencha todos os campos do evento');
+                }
+
+                const dados = await fazerRequisicao(`${API_URL}/eventos`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(eventoData)
+                });
+
+                mostrarSucesso('criar-evento-result', '✅ Evento criado com sucesso!');
+                mostrarResultado('criar-evento-result', dados);
+                
+                // Atualiza a lista de eventos
+                listarEventos();
+            } catch (erro) {
+                mostrarErro('criar-evento-result', erro);
+            }
+        }
+
+        // Adicionar Artista ao Evento
+        async function adicionarArtistaEvento() {
+            try {
+                if (!token) {
+                    throw new Error('Faça login primeiro como organizador');
+                }
+
+                const eventoId = document.getElementById('evento-artista-id').value;
+                const artistaId = document.getElementById('artista-eventoid').value;
+
+                if (!eventoId || !artistaId) {
+                    throw new Error('Informe o ID do evento e do artista');
+                }
+
+                const dados = await fazerRequisicao(`${API_URL}/eventos/${eventoId}/artistas/${artistaId}`, {
+                    method: 'POST'
+                });
+
+                mostrarSucesso('gerenciar-artistas-result', '✅ Artista adicionado ao evento!');
+                mostrarResultado('gerenciar-artistas-result', dados);
+                
+                // Atualiza os artistas do evento
+                buscarArtistasDoEvento();
+            } catch (erro) {
+                mostrarErro('gerenciar-artistas-result', erro);
+            }
+        }
+
+        // Remover Artista do Evento
+        async function removerArtistaEvento() {
+            try {
+                if (!token) {
+                    throw new Error('Faça login primeiro como organizador');
+                }
+
+                const eventoId = document.getElementById('evento-artista-id').value;
+                const artistaId = document.getElementById('artista-eventoid').value;
+
+                if (!eventoId || !artistaId) {
+                    throw new Error('Informe o ID do evento e do artista');
+                }
+
+                const dados = await fazerRequisicao(`${API_URL}/eventos/${eventoId}/artistas/${artistaId}`, {
+                    method: 'DELETE'
+                });
+
+                mostrarSucesso('gerenciar-artistas-result', '✅ Artista removido do evento!');
+                mostrarResultado('gerenciar-artistas-result', dados);
+                
+                // Atualiza os artistas do evento
+                buscarArtistasDoEvento();
+            } catch (erro) {
+                mostrarErro('gerenciar-artistas-result', erro);
+            }
+        }
+    </script>
+</body>
+</html>
