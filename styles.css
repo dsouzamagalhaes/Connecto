@@ -182,8 +182,14 @@ body {
 }
 
 .nav-menu {
+    color: var(--text-secondary);
+     text-decoration: none;
+     font-weight: 500;
+      position: relative;
     display: flex;
+    padding: 0.5rem 0;
     gap: 2rem;
+     transition: all var(--transition-fast);
 }
 
 .nav-link {
