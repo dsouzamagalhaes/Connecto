@@ -37,3 +37,9 @@ A interface foi pensada para ser intuitiva e de fácil navegação, com layouts 
 O projeto visa atingir um público diversificado, com a expectativa de melhorar a experiência de contratação de artistas e organizar eventos de forma mais eficiente. Espera-se que a plataforma consiga:
 
 > O desenvolvimento deste projeto representa um avanço significativo no mercado de contratação de artistas e organização de eventos. A plataforma proposta não só visa melhorar a visibilidade dos artistas e facilitar a contratação, mas também oferecer uma experiência única tanto para artistas quanto para organizadores de eventos. Com a implementação de funcionalidades inovadoras e uma interface amigável, espera-se que o projeto seja uma solução eficiente e acessível para as necessidades desse segmento.
+
+## Como rodar
+1. Instalar o Node e NPM
+2. npm install
+3. npm run dev
+4. abrir o index.html no navegador
